@@ -1,85 +1,36 @@
-const input = document.getElementById("inputImage");
-const image = document.getElementById("image");
-const result = document.getElementById("result");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Image Cropper</title>
 
-let cropper;
+    <link rel="stylesheet" href="style.css">
 
-input.addEventListener("change", function(e) {
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
+</head>
+<body>
 
-    const file = e.target.files[0];
+<h1>Online Image Cropper</h1>
 
-    if (!file) return;
+<input type="file" id="inputImage" accept="image/*">
 
-    image.src = URL.createObjectURL(file);
+<div class="container">
+    <img id="image">
+</div>
 
-    image.onload = function() {
+<div class="buttons">
+    <button id="cropBtn">Crop</button>
+    <button id="downloadBtn">Download</button>
+</div>
 
-        if (cropper) {
-            cropper.destroy();
-        }
+<h2>Result</h2>
 
-        cropper = new Cropper(image, {
-            viewMode: 1,
-            autoCropArea: 1,
-            movable: true,
-            zoomable: true,
-            scalable: true,
-            rotatable: true,
-            responsive: true,
-            background: false
-        });
+<img id="result">
 
-    };
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
+<script src="script.js"></script>
 
-});
-
-
-// Crop image with fixed pixel size
-document.getElementById("cropBtn").onclick = function() {
-
-    if (!cropper) return;
-
-    const canvas = cropper.getCroppedCanvas({
-
-        width: 800,     // Output width in pixels
-        height: 800,    // Output height in pixels
-
-        imageSmoothingEnabled: true,
-        imageSmoothingQuality: "high"
-
-    });
-
-    result.src = canvas.toDataURL("image/png");
-
-};
-
-
-// Download cropped image
-document.getElementById("downloadBtn").onclick = function() {
-
-    if (!cropper) return;
-
-    const canvas = cropper.getCroppedCanvas({
-
-        width: 800,
-        height: 800,
-
-        imageSmoothingEnabled: true,
-        imageSmoothingQuality: "high"
-
-    });
-
-
-    canvas.toBlob(function(blob) {
-
-        const link = document.createElement("a");
-
-        link.download = "cropped-image-800x800.png";
-
-        link.href = URL.createObjectURL(blob);
-
-        link.click();
-
-    }, "image/png");
-
-};
+</body>
+</html>
