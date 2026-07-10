@@ -1,4 +1,36 @@
-<link rel="stylesheet" href="style.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Image Cropper</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
+</head>
+<body>
+
+<h1>Online Image Cropper</h1>
+
+<input type="file" id="inputImage" accept="image/*">
+
+<div class="container">
+    <img id="image">
+</div>
+
+<div class="buttons">
+    <button id="cropBtn">Crop</button>
+    <button id="downloadBtn">Download</button>
+</div>
+
+<h2>Result</h2>
+
+<img id="result">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
 <script src="script.js"></script>
+
+</body>
+</html>
